@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{card.name}}{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>{{card.name}}</h1>
+        <button><a href="{{ path('card_list') }}">Retour à la liste</a></button>
+    </section>
+{% endblock %}
+
