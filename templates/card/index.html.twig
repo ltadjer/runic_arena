@@ -9,6 +9,7 @@
     <div>
     {% for card in cards %}
         <h2>{{ card.name }}</h2>
+        <img src="{{ card.imageFile }}" alt="{{ card.imageName }}">
             <button><a href="{{ path('card_edit', {'id': card.id}) }}">Modifier la carte</a></button>
             <button><a href="{{ path('card_delete', {'id': card.id}) }}">Supprimer la carte</a></button>
     </div>

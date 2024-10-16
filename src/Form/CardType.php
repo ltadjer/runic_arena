@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CardType extends AbstractType
 {
@@ -18,6 +19,12 @@ class CardType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => true,
+                'download_label' => 'Télécharger',
+            ])
             ->add('attackPower')
             ->add('type', EntityType::class, [
                 'class' => typeCard::class,
