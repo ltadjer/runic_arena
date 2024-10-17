@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cartes{% endblock %}
+
+{% block body %}
+    <section>
+    <h1>Cartes</h1>
+    <button><a href="{{ path('card_add') }}">Ajouter une carte</a></button>
+    <div>
+    {% for card in cards %}
+       <h2>{{ card.name }}</h2>
+    <p>Puissance d'attaque: {{ card.attackPower }}</p>
+    <p>Type: {{ card.type.name }}</p>
+    <p>Classe: {{ card.class.name }}</p>
+    {% if card.imageName %}
+        <img src="{{ asset('images/cards/' ~ card.imageName) }}" alt="{{ card.name }}">
+    {% endif %}
+            <button><a href="{{ path('card_edit', {'id': card.id}) }}">Modifier la carte</a></button>
+            <button><a href="{{ path('card_delete', {'id': card.id}) }}">Supprimer la carte</a></button>
+    </div>
+    {% endfor %}
+{% endblock %}
