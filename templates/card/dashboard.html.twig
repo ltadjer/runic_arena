@@ -1,20 +1,16 @@
-{% block title %}Admin{% endblock %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-    <section>
-    <h1>Cartes</h1>
-    <button><a href="{{ path('card_add') }}">Ajouter une carte</a></button>
-    <div>
-    {% for card in cards %}
-       <h2>{{ card.name }}</h2>
-    <p>Puissance d'attaque: {{ card.attackPower }}</p>
-    <p>Type: {{ card.type.name }}</p>
-    <p>Classe: {{ card.class.name }}</p>
-    {% if card.imageName %}
-        <img src="{{ asset('images/cards/' ~ card.imageName) }}" alt="{{ card.name }}">
-    {% endif %}
-            <button><a href="{{ path('card_edit', {'id': card.id}) }}">Modifier la carte</a></button>
-            <button><a href="{{ path('card_delete', {'id': card.id}) }}">Supprimer la carte</a></button>
-    </div>
-    {% endfor %}
+    <h1>Dashboard</h1>
+
+    <h2>Nombre de cartes total générées : {{ cards|length }}</h2>
+
+    <h3>Nombre de cartes par type</h3>
+    <canvas id="cardsByTypeChart"></canvas>
+
+    <h3>Nombre de cartes par classe</h3>
+    <canvas id="cardsByClassChart"></canvas>
+
+<script id="cardsByTypeData" type="application/json">{{ cardsByType|json_encode|raw }}</script>
+    <script id="cardsByClassData" type="application/json">{{ cardsByClass|json_encode|raw }}</script>
 {% endblock %}

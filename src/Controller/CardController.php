@@ -21,8 +21,19 @@ class CardController extends AbstractController
     public function adminDashboard(EntityManagerInterface $em): Response
     {
         $cards = $em->getRepository(Card::class)->findAll();
+
+        // Nombre de cartes par type
+        $cardsByType = $em->getRepository(Card::class)->countByType();
+        dump($cardsByType);
+
+        // Nombre de cartes par classe
+        $cardsByClass = $em->getRepository(Card::class)->countByClass();
+        dump($cardsByClass);
+
         return $this->render('card/dashboard.html.twig', [
             'cards' => $cards,
+            'cardsByType' => $cardsByType,
+            'cardsByClass' => $cardsByClass,
         ]);
     }
 

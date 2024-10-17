@@ -37,7 +37,7 @@ class Card
     private ?typeCard $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'cards')]
-    private ?classCard $class = null;
+    private ?ClassCard $class = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
