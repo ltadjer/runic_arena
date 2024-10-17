@@ -11,8 +11,8 @@ use App\Form\CardType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\SecurityBundle\Security;
+use App\Service\CardNameGenerator;
 
 
 class CardController extends AbstractController
@@ -38,6 +38,13 @@ class CardController extends AbstractController
         return $this->render('card/index.html.twig', [
             'cards' => $cards,
         ]);
+    }
+
+    #[Route('/generate-card-name', name: 'generate_card_name')]
+    public function generateCardName(CardNameGenerator $cardNameGenerator): Response
+    {
+        $generatedName = $cardNameGenerator->generateRandomName();
+        return $this->json(['name' => $generatedName]);
     }
 
     #[Route('/cartes/ajouter', name: 'card_add')]
