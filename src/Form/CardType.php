@@ -3,9 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Card;
-use App\Entity\classCard;
-use App\Entity\typeCard;
-use App\Entity\User;
+use App\Entity\ClassCard;
+use App\Entity\TypeCard;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,10 +19,10 @@ class CardType extends AbstractType
         $builder
             ->add('name')
             ->add('imageFile', VichImageType::class, [
-                'required' => false,
-                'allow_delete' => true,
-                'download_uri' => true,
-                'download_label' => 'Télécharger',
+                'required' => true,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'image_uri' => true,
             ])
             ->add('attackPower')
             ->add('type', EntityType::class, [
