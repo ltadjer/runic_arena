@@ -11,13 +11,20 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class CardType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
+            ->add('generateName', ButtonType::class, [
+                'label' => 'Générer un nom',
+                'attr' => ['class' => 'btn generate-name'],
+            ])
             ->add('imageFile', VichImageType::class, [
                 'required' => true,
                 'allow_delete' => false,
