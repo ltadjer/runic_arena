@@ -2,6 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: skyblue;
+@layer base {
+    body {
+        @apply font-main;
+    }
+
+    .my-checkbox {
+        @apply bg-medium border-dark rounded-sm text-dark ring-dark focus:ring-dark focus:ring-offset-medium;
+    }
+
+    .my-input {
+        @apply mt-1 block w-full px-2 py-2 border-0 border-b border-b-dark bg-medium sm:text-sm focus:ring-dark focus:ring-offset-medium focus:border-0 focus:bg-medium;
+    }
+
+    .checkbox {
+        @apply flex items-center gap-4;
+    }
+
+    .container-content {
+         @apply lg:flex lg:gap-6 lg:justify-center lg:items-center container px-12 py-16 mx-auto h-5/6;
+    }
+    
+    .container-form {
+        @apply border border-dark rounded-lg p-8 space-y-4;
+    }
+
+    .image-form {
+        @apply hidden lg:block flex-1 h-auto lg:w-1/2 lg:mb-0 rounded-xl shadow;
+    }
+
+    .button-form {
+        @apply py-2 px-6 border border-dark rounded-md text-sm font-medium text-dark w-fit;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-black;
+    }
+
+    .form-error {
+        @apply text-red-500 text-sm;
+    }
+
+    h1 {
+        @apply text-xl lg:text-2xl font-bold mb-4 text-dark text-center lg:text-left;
+    }
+
+    h2 {
+        @apply text-xl font-bold mb-8 text-dark text-center;
+    }
+
+    h3 {
+        @apply text-lg font-bold mb-8 text-dark text-center;
+    }
+  
+    select option {
+        @apply hover:bg-medium text-dark;
+    }
+
+    .cards-section {
+        @apply container px-12 py-16 mx-auto h-5/6 flex justify-center items-center flex-col;
+    }
+    .card-container {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12;
+    }
+
+    .card-image {
+        @apply block w-full h-auto rounded-b-3xl;
+    }
+
+    .card-attack-power {
+        @apply absolute bottom-[28%] left-[20px] z-10 text-xl p-4 shadow text-dark rounded-full w-1/4 text-center bg-light bg-opacity-70 font-bold mb-2;
+    }
+
+    .card-details {
+        @apply absolute bottom-0 left-0 right-0 bg-light bg-opacity-70 pt-8 px-6 pb-4 rounded-b-3xl text-dark;
+    }
+
+    .card-title {
+        @apply text-lg font-bold mt-4;
+    }
+
+    .card-meta {
+        @apply flex justify-between mt-2;
+    }
+
+    .card-buttons {
+        @apply p-4 flex gap-4 items-center justify-center absolute inset-0 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+    }
+
+    .card-button {
+        @apply p-4 rounded-full border-2 border-dark bg-light bg-opacity-70;
+    }
+
+    .swiper-container {
+        @apply w-full overflow-hidden relative;
+    }
+    
+    .swiper-slide {
+        @apply flex justify-center;
+    }
+    
+    .card-slide {
+        @apply max-w-full box-border;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        @apply absolute top-1/2 transform -translate-y-1/2 text-white z-10;
+    }
+    
+    .swiper-button-next {
+        @apply right-2 text-dark; 
+    
+    }
+    .swiper-button-prev {
+        @apply left-2 text-dark;
+    }
+
+    #deleteModal {
+        @apply z-50;
+    }
+
+    #deleteModal .modal-content {
+        @apply z-60;
+    }
+
+}
+
+@layer components {
+
+    header nav.hidden {
+        @apply flex-col gap-4;
+    }
+
+    input[type="checkbox"] {
+        @apply my-checkbox;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"], 
+    input[type="number"] {
+        @apply appearance-none my-input;
+    }  
+
+    input[type="file"] {
+        @apply my-input file:mr-4 file:py-2 file:px-4
+        file:rounded-full file:border-0
+        file:text-sm
+        file:bg-dark file:text-light
+        hover:file:bg-dark cursor-pointer
+        mb-4;
+    }
+
+    select {
+        @apply my-input appearance-none;
+    } 
+
+    #menu {
+        @apply rounded-lg mt-2 py-6 lg:py-0;
+    }
 }

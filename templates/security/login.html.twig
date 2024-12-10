@@ -1,23 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
 	{% if error %}
 		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 	{% endif %}
 
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
+<div class="container-content">
+    <img src="{{ asset('images/background-image.jpg') }}" alt="Image de fond" class="image-form">
+	<div class="flex-1">
+	<h1>Connexion</h1>
+	<form  class="container-form" action="{{ path('app_login') }}" method="post">
+		<div>
+		<label class="form-label" for="username">Email:</label>
 		<input type="text" id="username" name="_username" value="{{ last_username }}"/>
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password"/>
+		</div>
+		<div>
+			<label class="form-label" for="password">Password:</label>
+			<input type="password" id="password" name="_password"/>
+		</div>
 
+		   <div class="text-xs">
+		   		<span>Vous n'avez pas de compte ?</span>
+                <a href="{{ path('app_register') }}" class="text-dark font-bold underline">S'inscrire</a>
+            </div>
+	
 		{# If you want to control the URL the user is redirected to on success
 		<input type="hidden" name="_target_path" value="/account"/> #}
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <div class="flex justify-end">
 
-		<button type="submit">login</button>
+		<button type="submit" class="button-form">Se connecter</button>
+		</div>
 	</form>
+	</div>
+</div>
 {% endblock %}

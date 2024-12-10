@@ -1,0 +1,12 @@
+{# templates/error/404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+<section class="flex flex-col items-center justify-center h-screen text-center">
+    <h1 class="text-6xl font-bold mb-4">404</h1>
+    <p class="text-xl mb-8">Oups ! La page que vous recherchez n'existe pas.</p>
+    <a href="{{ path('app_home') }}" class="button-form px-4 py-2 bg-dark text-white rounded">Retour à l'accueil</a>
+</section>
+{% endblock %}

@@ -3,7 +3,74 @@
 {% block title %}Ajouter une carte{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+   <div class="container-content">
+    <div class="">
+        <h1>Ajouter une carte</h1>
+        <div class="container-form">
+         {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+        <div>
+            {{ form_label(form.name, null, {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': ''}}) }}
+            {{ form_errors(form.name, {'attr': {'class': 'form-error'}}) }}
+        </div>
+        <div>
+            {{ form_widget(form.generateName, {'attr': {'class': 'button-form generate-name'}}) }}
+        </div>
+        <div>
+            {{ form_label(form.imageFile, null, {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.imageFile, {'attr': {'class': ''}}) }}
+            {{ form_errors(form.imageFile, {'attr': {'class': 'form-error'}}) }}
+        </div>
+        <div>
+            {{ form_label(form.attackPower, null, {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.attackPower, {'attr': {'class': ''}}) }}
+            {{ form_errors(form.attackPower, {'attr': {'class': 'form-error'}}) }}
+        </div>
+        <div>
+            {{ form_label(form.type, null, {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.type, {'attr': {'class': ''}}) }}
+            {{ form_errors(form.type, {'attr': {'class': 'form-error'}}) }}
+        </div>
+        <div>
+            {{ form_label(form.class, null, {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.class, {'attr': {'class': ''}}) }}
+            {{ form_errors(form.class, {'attr': {'class': 'form-error'}}) }}
+        </div>
+        <div class="flex justify-end">
+            <button type="submit" class="button-form">
+                Enregistrer
+            </button>
+        </div>
     {{ form_end(form) }}
+        </div>
+    </div>
+   </div>
+   
+   <script>
+    const btnGenerateName = document.querySelector('.generate-name');
+    const nameField = document.querySelector('input[name="card[name]"]');
+
+    if (btnGenerateName && nameField) {
+        btnGenerateName.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            fetch(`{{ path('generate_card_name') }}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    console.log(response);
+                    return response.json();
+                })
+                .then(data => {
+                    nameField.value = data.name;
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        });
+    }
+</script>
+
+
 {% endblock %}

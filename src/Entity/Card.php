@@ -110,12 +110,12 @@ class Card
         return $this;
     }
 
-    public function getType(): ?typeCard
+    public function getType(): ?TypeCard
     {
         return $this->type;
     }
 
-    public function setType(?typeCard $type): static
+    public function setType(?TypeCard $type): static
     {
         $this->type = $type;
 

@@ -4,8 +4,8 @@ namespace App\Service;
 
 class CardNameGenerator
 {
-    private $adjectives = ['Féroce', 'Majestueux', 'Sauvage', 'Éthéré', 'Mystique'];
-    private $nouns = ['Dragon', 'Griffon', 'Chimère', 'Hippogriffe', 'Manticore', 'Hydre', 'Sphinx'];
+    public $adjectives = ['Féroce', 'Majestueux', 'Sauvage', 'Éthéré', 'Mystique'];
+    public $nouns = ['Dragon', 'Griffon', 'Chimère', 'Hippogriffe', 'Manticore', 'Hydre', 'Sphinx'];
 
     public function generateRandomName(): string
     {
