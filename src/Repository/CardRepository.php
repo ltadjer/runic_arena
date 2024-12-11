@@ -16,6 +16,26 @@ class CardRepository extends ServiceEntityRepository
         parent::__construct($registry, Card::class);
     }
 
+    public function countByType(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('t.name as type, COUNT(c.id) as count')
+            ->join('c.type', 't')
+            ->groupBy('t.name')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countByClass(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('cl.name as class, COUNT(c.id) as count')
+            ->join('c.class', 'cl')
+            ->groupBy('cl.name')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Card[] Returns an array of Card objects
     //     */

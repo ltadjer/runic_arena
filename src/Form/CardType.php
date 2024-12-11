@@ -20,7 +20,9 @@ class CardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Nom',
+            ])
             ->add('generateName', ButtonType::class, [
                 'label' => 'Générer un nom',
                 'attr' => ['class' => 'btn generate-name'],
@@ -30,17 +32,27 @@ class CardType extends AbstractType
                 'allow_delete' => false,
                 'download_uri' => false,
                 'image_uri' => true,
+                'label' => 'Image',
             ])
-            ->add('attackPower')
+            ->add('attackPower', 
+                null, 
+                [
+                    'label' => 'Puissance d\'attaque',
+                    'attr' => ['min' => 1, 'max' => 9],
+                    'help' => 'La puissance d\'attaque doit être comprise entre 1 et 9.',
+
+                ]
+            )
             ->add('type', EntityType::class, [
-                'class' => typeCard::class,
+                'class' => TypeCard::class,
                 'choice_label' => 'name',
+                'label' => 'Type',
             ])
             ->add('class', EntityType::class, [
-                'class' => classCard::class,
+                'class' => ClassCard::class,
                 'choice_label' => 'name',
+                'label' => 'Classe',
             ])
-            ->add('Enregistrer', SubmitType::class)
         ;
     }
 

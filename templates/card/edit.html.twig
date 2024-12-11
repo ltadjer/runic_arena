@@ -1,8 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{card.name}}{% endblock %}
+{% block title %}
+	{{card.name}}
+{% endblock %}
 
 {% block body %}
-{{ form(form) }}
+	<div class="container-content">
+		<div class="">
+			<h1>Modifier une carte</h1>
+			<div class="container-form">
+				{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+				<div>
+					{{ form_label(form.name, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(form.name, {'attr': {'class': ''}}) }}
+					{{ form_errors(form.name, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					{{ form_widget(form.generateName, {'attr': {'class': 'hidden button-form generate-name'}}) }}
+				</div>
+				<div>
+					{{ form_label(form.imageFile, null, {'label_attr': {'class': 'form-label mb-4'}}) }}
+					{{ form_widget(form.imageFile, {'attr': {'class': ''}}) }}
+					{{ form_errors(form.imageFile, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					{{ form_label(form.attackPower, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(form.attackPower, {'attr': {'class': ''}}) }}
+					{{ form_errors(form.attackPower, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					{{ form_label(form.type, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(form.type, {'attr': {'class': ''}}) }}
+					{{ form_errors(form.type, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					{{ form_label(form.class, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(form.class, {'attr': {'class': ''}}) }}
+					{{ form_errors(form.class, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div class="flex justify-end">
+					<button type="submit" class="button-form">
+						Enregistrer
+					</button>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+
 
 {% endblock %}

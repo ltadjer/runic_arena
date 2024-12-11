@@ -37,7 +37,7 @@ class Card
     private ?typeCard $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'cards')]
-    private ?classCard $class = null;
+    private ?ClassCard $class = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
@@ -110,12 +110,12 @@ class Card
         return $this;
     }
 
-    public function getType(): ?typeCard
+    public function getType(): ?TypeCard
     {
         return $this->type;
     }
 
-    public function setType(?typeCard $type): static
+    public function setType(?TypeCard $type): static
     {
         $this->type = $type;
 

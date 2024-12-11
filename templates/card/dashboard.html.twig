@@ -1,20 +1,75 @@
-{% block title %}Admin{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard
+{% endblock %}
 
 {% block body %}
-    <section>
-    <h1>Cartes</h1>
-    <button><a href="{{ path('card_add') }}">Ajouter une carte</a></button>
-    <div>
-    {% for card in cards %}
-       <h2>{{ card.name }}</h2>
-    <p>Puissance d'attaque: {{ card.attackPower }}</p>
-    <p>Type: {{ card.type.name }}</p>
-    <p>Classe: {{ card.class.name }}</p>
-    {% if card.imageName %}
-        <img src="{{ asset('images/cards/' ~ card.imageName) }}" alt="{{ card.name }}">
-    {% endif %}
-            <button><a href="{{ path('card_edit', {'id': card.id}) }}">Modifier la carte</a></button>
-            <button><a href="{{ path('card_delete', {'id': card.id}) }}">Supprimer la carte</a></button>
-    </div>
-    {% endfor %}
+	<div class="px-12 py-16 h-5/6 flex justify-center items-center flex-col">
+		<h2>
+			Nombre de cartes
+		</h2>
+		<div class="text-dark text-lg bg-light bg-opacity-60 backdrop-blur-xs py-4 px-6 shadow mx-6 rounded-full font-bold mb-10">{{ cards|length }}</div>
+
+
+		<div class="flex flex-col lg:flex-row justify-center gap-8">
+
+			<div class="bg-light bg-opacity-60 backdrop-blur-xs py-6 px-8 rounded-xl shadow flex flex-col justify-center items-center mx-6">
+				<h3>Nombre de cartes par type</h3>
+				<canvas id="cardsByTypeChart"></canvas>
+			</div>
+			<div class="bg-light bg-opacity-60 backdrop-blur-xs py-6 px-8 rounded-xl shadow flex flex-col justify-center items-center mx-6">
+				<h3>Nombre de cartes par classe</h3>
+				<canvas id="cardsByClassChart"></canvas>
+			</div>
+
+		</div>
+	</div>
+
+
+	<style>
+		span {
+			width: fit-content;
+		}
+	</style>
+	<script id="cardsByTypeData" type="application/json">{{ cardsByType|json_encode|raw }}</script>
+	<script id="cardsByClassData" type="application/json">{{ cardsByClass|json_encode|raw }}</script>
+
+	<script>
+		const cardsByTypeDataElement = document.getElementById('cardsByTypeData');
+const cardsByClassDataElement = document.getElementById('cardsByClassData');
+
+if (cardsByTypeDataElement && cardsByClassDataElement) {
+const cardsByTypeData = JSON.parse(cardsByTypeDataElement.textContent);
+const cardsByClassData = JSON.parse(cardsByClassDataElement.textContent);
+
+const ctxType = document.getElementById('cardsByTypeChart').getContext('2d');
+const ctxClass = document.getElementById('cardsByClassChart').getContext('2d');
+
+new Chart(ctxType, {
+type: 'doughnut',
+data: {
+labels: cardsByTypeData.map(item => item.type),
+datasets: [
+{
+data: cardsByTypeData.map(item => item.count),
+backgroundColor: ['#76290B', '#C2A896']
+}
+]
+}
+});
+
+new Chart(ctxClass, {
+type: 'doughnut',
+data: {
+labels: cardsByClassData.map(item => item.class),
+datasets: [
+{
+data: cardsByClassData.map(item => item.count),
+backgroundColor: ['#76290B', '#C2A896', '#3B1505', '#FFF3EA']
+}
+]
+}
+});
+}
+	</script>
 {% endblock %}

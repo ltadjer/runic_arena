@@ -1,22 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cartes{% endblock %}
+{% block title %}Collection de cartes
+{% endblock %}
 
 {% block body %}
-    <section>
-    <h1>Cartes</h1>
-    <button><a href="{{ path('card_add') }}">Ajouter une carte</a></button>
-    <div>
-    {% for card in cards %}
-       <h2>{{ card.name }}</h2>
-    <p>Puissance d'attaque: {{ card.attackPower }}</p>
-    <p>Type: {{ card.type.name }}</p>
-    <p>Classe: {{ card.class.name }}</p>
-    {% if card.imageName %}
-        <img src="{{ asset('images/cards/' ~ card.imageName) }}" alt="{{ card.name }}">
-    {% endif %}
-            <button><a href="{{ path('card_edit', {'id': card.id}) }}">Modifier la carte</a></button>
-            <button><a href="{{ path('card_delete', {'id': card.id}) }}">Supprimer la carte</a></button>
-    </div>
-    {% endfor %}
+	<section class="px-12 py-16 mx-auto h-5/6 flex justify-center items-center flex-col z-0">
+		<h1 class="text-center">Ma collection</h1>
+		<a class="button-form mb-8" href="{{ path('card_add') }}">Ajouter une carte</a>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+			{% for card in cards %}
+				<div class="card relative group z-0 w-64 h-96">
+					<div class="group-hover:blur-sm transition duration-300 w-full h-full">
+						{% if card.imageName %}
+							<img class="card-image w-full h-full object-cover rounded-3xl" src="{{ asset('images/cards/' ~ card.imageName) }}" alt="{{ card.name }}">
+						{% endif %}
+						<p class="absolute bottom-[28%] left-[20px] z-10 text-xl p-4 shadow text-dark rounded-full w-1/4 text-center bg-light bg-opacity-70 font-bold">{{ card.attackPower }}</p>
+						<div class="card-details">
+							<h2 class="text-base font-bold text-left">{{ card.name }}</h2>
+							<div class="flex justify-between">
+								<span class="text-sm">{{ card.type.name }}</span>
+								<span class="text-sm">{{ card.class.name }}</span>
+							</div>
+						</div>
+					</div>
+					<div class="p-4 flex gap-4 items-center justify-center absolute inset-0 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+						<button class="card-button">
+							<a href="{{ path('card_edit', {'id': card.id}) }}">
+								<img src="{{ asset('icones/edit-2.svg') }}" alt="Modifier la carte">
+							</a>
+						</button>
+						<button class="card-button" onclick="showDeleteModal({{ card.id }})">
+							<img src="{{ asset('icones/trash-2.svg') }}" alt="Supprimer la carte">
+						</button>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<div id="deleteModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50 isolate">
+		<div class="bg-white p-6 rounded-lg shadow-lg">
+			<h2 class="text-xl mb-4">Confirmer la suppression</h2>
+			<p>Êtes-vous sûr de vouloir supprimer cette carte ?</p>
+			<div class="mt-4 flex justify-center gap-4">
+				<a id="confirmDeleteButton" href="#" class="px-4 py-2 bg-dark text-white rounded-lg">Supprimer</a>
+				<button onclick="hideDeleteModal()" class="mr-4 px-4 py-2 bg-gray-300 rounded-lg">Annuler</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function showDeleteModal(cardId) {
+const deleteUrl = `{{ path('card_delete', {'id': 'CARD_ID'}) }}`.replace('CARD_ID', cardId);
+document.getElementById('confirmDeleteButton').href = deleteUrl;
+document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+function hideDeleteModal() {
+document.getElementById('deleteModal').classList.add('hidden');
+}
+	</script>
 {% endblock %}
