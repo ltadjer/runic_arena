@@ -42,9 +42,9 @@ class CardController extends AbstractController
     {
         $cards = [];
         if ($security->isGranted('ROLE_ADMIN')) {
-            $cards = $em->getRepository(Card::class)->findAll();
+            $cards = $em->getRepository(Card::class)->findBy([], ['createdAt' => 'DESC']);
         } else {
-            $cards = $em->getRepository(Card::class)->findBy(['user' => $this->getUser()]);
+            $cards = $em->getRepository(Card::class)->findBy(['user' => $this->getUser()], ['createdAt' => 'DESC']);
         }
         return $this->render('card/index.html.twig', [
             'cards' => $cards,

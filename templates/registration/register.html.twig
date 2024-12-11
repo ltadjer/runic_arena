@@ -1,43 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
-   <div class="container-content">
-    <img src="{{ asset('images/background-image.jpg') }}" alt="Image de fond" class="image-form">
-    <div class="flex-1">
-        <h1>Inscription</h1>
-        <div class="container-form">
-         {{ form_start(registrationForm, {'attr': {'class': 'space-y-4'}}) }}
-        <div>
-            {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(registrationForm.email, {'attr': {'class': ''}}) }}
-            {{ form_errors(registrationForm.email, {'attr': {'class': 'form-error'}}) }}
-        </div>
-        <div>
-            {{ form_label(registrationForm.username, null, {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(registrationForm.username, {'attr': {'class': ''}}) }}
-            {{ form_errors(registrationForm.username, {'attr': {'class': 'form-error'}}) }}
-        </div>
-        <div>
-            {{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'form-label'}}) }}
-            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': ''}}) }}
-            {{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'form-error'}}) }}     
-        </div>
-        <div>
-            <div class="checkbox">
-                {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': ''}}) }}
-                {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-label'}}) }}
-            </div>
-            {{ form_errors(registrationForm.agreeTerms, {'attr': {'class': 'form-error'}}) }}
-        </div>
-        <div class="flex justify-end">
-            <button type="submit" class="button-form">
-                S'inscrire
-            </button>
-        </div>
-    {{ form_end(registrationForm) }}
-        </div>
-    </div>
-   </div>
+	<div class="container-content">
+		<img src="{{ asset('images/background-image.jpg') }}" alt="Image de fond" class="image-form">
+		<div class="flex-1">
+			<h1>Inscription</h1>
+			<div class="container-form">
+				{{ form_start(registrationForm, {'attr': {'class': 'space-y-4'}}) }}
+				<div>
+					{{ form_label(registrationForm.email, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(registrationForm.email, {'attr': {'class': ''}}) }}
+					{{ form_errors(registrationForm.email, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					{{ form_label(registrationForm.username, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(registrationForm.username, {'attr': {'class': ''}}) }}
+					{{ form_errors(registrationForm.username, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					{{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(registrationForm.plainPassword, {'attr': {'class': ''}}) }}
+					{{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div>
+					<div class="checkbox">
+						{{ form_widget(registrationForm.agreeTerms, {'attr': {'class': ''}}) }}
+						{{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-label'}}) }}
+					</div>
+					{{ form_errors(registrationForm.agreeTerms, {'attr': {'class': 'form-error'}}) }}
+				</div>
+				<div class="flex justify-end">
+					<button type="submit" class="button-form">
+						S'inscrire
+					</button>
+				</div>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

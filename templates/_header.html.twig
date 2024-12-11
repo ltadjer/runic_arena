@@ -1,39 +1,39 @@
 <header class="relative bg-light flex justify-between items-center rounded-xl px-8 py-4 mt-4 mx-4">
-    <img src="{{ asset('images/runic-arena_logo.png') }}" alt="Image de fond" class="block h-auto w-20">
-    <button id="menu-button" class="lg:hidden">
-        <img src="{{ asset('icones/menu.svg') }}" alt="Menu" class="w-6 h-6">
-    </button>
-    <nav id="menu" class="hidden absolute top-full left-0 w-full bg-light lg:static lg:flex lg:justify-end z-40">
-        <ul class="flex flex-col lg:flex-row gap-8 justify-center lg:justify-end items-center">
-         <li class="hover:underline hover:underline-offset-1">
-                    <a href="{{ path('app_home') }}" class="text-dark">Accueil</a>
-                </li>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li class="hover:underline hover:underline-offset-1">
-                    <a href="{{ path('card_add') }}" class="text-dark">Générer une carte</a>
-                </li>
-                <li class="hover:underline hover:underline-offset-1">
-                    <a href="{{ path('card_list') }}" class="text-dark">Liste des cartes</a>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="hover:underline hover:underline-offset-1">
-                        <a href="{{ path('app_dashboard') }}" class="text-dark">Dashboard</a>
-                    </li>
-                {% endif %}
-                <li class="button-form">
-                    <a href="{{ path('app_logout') }}" class="text-dark">Déconnexion</a>
-                </li>
-            {% else %}
-                <li class="button-form">
-                    <a href="{{ path('app_login') }}" class="text-dark">Connexion</a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
+	<img src="{{ asset('images/runic-arena_logo.png') }}" alt="Image de fond" class="block h-auto w-20">
+	<button id="menu-button" class="lg:hidden">
+		<img src="{{ asset('icones/menu.svg') }}" alt="Menu" class="w-6 h-6">
+	</button>
+	<nav id="menu" class="hidden absolute top-full left-0 w-full bg-light lg:static lg:flex lg:justify-end z-40">
+		<ul class="flex flex-col lg:flex-row gap-8 justify-center lg:justify-end items-center">
+			<li class="hover:underline hover:underline-offset-1">
+				<a href="{{ path('app_home') }}" class="text-dark">Accueil</a>
+			</li>
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<li class="hover:underline hover:underline-offset-1">
+					<a href="{{ path('card_add') }}" class="text-dark">Générer une carte</a>
+				</li>
+				<li class="hover:underline hover:underline-offset-1">
+					<a href="{{ path('card_list') }}" class="text-dark">Liste des cartes</a>
+				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="hover:underline hover:underline-offset-1">
+						<a href="{{ path('app_dashboard') }}" class="text-dark">Dashboard</a>
+					</li>
+				{% endif %}
+				<li class="button-form">
+					<a href="{{ path('app_logout') }}" class="text-dark">Déconnexion</a>
+				</li>
+			{% else %}
+				<li class="button-form">
+					<a href="{{ path('app_login') }}" class="text-dark">Connexion</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
 </header>
 
 <script>
-    document.getElementById('menu-button').addEventListener('click', function() {
-        document.getElementById('menu').classList.toggle('hidden');
-    });
+	document.getElementById('menu-button').addEventListener('click', function () {
+document.getElementById('menu').classList.toggle('hidden');
+});
 </script>
