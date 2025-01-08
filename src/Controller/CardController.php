@@ -14,26 +14,49 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use App\Service\CardNameGenerator;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class CardController extends AbstractController
 {
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function adminDashboard(EntityManagerInterface $em): Response
+    public function adminDashboard(EntityManagerInterface $em, ChartBuilderInterface $chartBuilder): Response
     {
         $cards = $em->getRepository(Card::class)->findAll();
 
         // Nombre de cartes par type
         $cardsByType = $em->getRepository(Card::class)->countByType();
-        dump($cardsByType);
 
         // Nombre de cartes par classe
         $cardsByClass = $em->getRepository(Card::class)->countByClass();
-        dump($cardsByClass);
+
+        // Créer le graphique pour les cartes par type
+        $cardsByTypeChart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+        $cardsByTypeChart->setData([
+            'labels' => array_column($cardsByType, 'type'),
+            'datasets' => [
+                [
+                    'data' => array_column($cardsByType, 'count'),
+                    'backgroundColor' => ['#76290B', '#C2A896'],
+                ],
+            ],
+        ]);
+        // Créer le graphique pour les cartes par classe
+        $cardsByClassChart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+        $cardsByClassChart->setData([
+            'labels' => array_column($cardsByClass, 'class'),
+            'datasets' => [
+                [
+                    'data' => array_column($cardsByClass, 'count'),
+                    'backgroundColor' => ['#76290B', '#C2A896', '#3B1505', '#FFF3EA'],
+                ],
+            ],
+        ]);
 
         return $this->render('card/dashboard.html.twig', [
             'cards' => $cards,
-            'cardsByType' => $cardsByType,
-            'cardsByClass' => $cardsByClass,
+            'cardsByTypeChart' => $cardsByTypeChart,
+            'cardsByClassChart' => $cardsByClassChart,
         ]);
     }
 

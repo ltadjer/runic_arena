@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88e86b33b416966d4d8b67cd570f8fb8",
+    "content-hash": "d6f91d1dc45aa4c9db180d97453e092f",
     "packages": [
         {
             "name": "composer/semver",
@@ -6910,16 +6910,16 @@
         },
         {
             "name": "symfony/ux-chartjs",
-            "version": "v2.20.0",
+            "version": "v2.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-chartjs.git",
-                "reference": "3a669e28d6665515da4d3117d245650d325212da"
+                "reference": "6e7de01ea469840da2b7458b660b52e846e279e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-chartjs/zipball/3a669e28d6665515da4d3117d245650d325212da",
-                "reference": "3a669e28d6665515da4d3117d245650d325212da",
+                "url": "https://api.github.com/repos/symfony/ux-chartjs/zipball/6e7de01ea469840da2b7458b660b52e846e279e1",
+                "reference": "6e7de01ea469840da2b7458b660b52e846e279e1",
                 "shasum": ""
             },
             "require": {
@@ -6941,8 +6941,8 @@
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
-                    "name": "symfony/ux",
-                    "url": "https://github.com/symfony/ux"
+                    "url": "https://github.com/symfony/ux",
+                    "name": "symfony/ux"
                 }
             },
             "autoload": {
@@ -6970,7 +6970,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-chartjs/tree/v2.20.0"
+                "source": "https://github.com/symfony/ux-chartjs/tree/v2.22.1"
             },
             "funding": [
                 {
@@ -6986,7 +6986,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-24T09:27:42+00:00"
+            "time": "2024-12-05T14:25:02+00:00"
         },
         {
             "name": "symfony/ux-turbo",
