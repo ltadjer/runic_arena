@@ -91,7 +91,7 @@
     }
 
     .card-button {
-        @apply p-4 rounded-full border-2 border-dark bg-light bg-opacity-70 hover:bg-dark hover:text-light;
+        @apply p-4 rounded-full border-2 border-dark bg-light bg-opacity-70 hover:text-light;
     }
 
     .swiper-container {

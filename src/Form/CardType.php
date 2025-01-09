@@ -28,7 +28,7 @@ class CardType extends AbstractType
                 'attr' => ['class' => 'btn generate-name'],
             ])
             ->add('imageFile', VichImageType::class, [
-                'required' => true,
+                'required' => false,
                 'allow_delete' => false,
                 'download_uri' => false,
                 'image_uri' => true,
